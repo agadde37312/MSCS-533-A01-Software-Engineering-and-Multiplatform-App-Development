@@ -1,0 +1,52 @@
+# ============================================================
+# pubspec.yaml
+# Flutter Unit Converter App — Project Manifest
+# Course: MSCS-631 | University of the Cumberlands
+# Author: Arun
+#
+# This file declares all project metadata, SDK constraints,
+# dependencies, assets, and Flutter-specific configuration.
+# See: https://dart.dev/tools/pub/pubspec
+# ============================================================
+
+name: unit_converter
+description: >
+  A metric/imperial unit conversion app built with Flutter.
+  Supports Distance, Weight, Temperature, and Volume conversions
+  following Effective Dart coding conventions.
+
+# Semantic versioning: major.minor.patch+build
+# Increment patch for bug fixes, minor for new features.
+version: 1.0.0+1
+
+# ── SDK Constraints ─────────────────────────────────────────
+environment:
+  sdk: ">=3.0.0 <4.0.0"   # Dart 3 required for Records & Patterns
+
+# ── Dependencies ────────────────────────────────────────────
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Material Icons font included via flutter SDK (cupertino_icons optional)
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Dart linting rules following Effective Dart guidelines
+  flutter_lints: ^3.0.0
+
+# ── Flutter Configuration ────────────────────────────────────
+flutter:
+  # Enable Material Design widgets
+  uses-material-design: true
+
+  # Uncomment below to add custom fonts or assets in the future:
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/Roboto-Regular.ttf
+  # assets:
+  #   - assets/images/

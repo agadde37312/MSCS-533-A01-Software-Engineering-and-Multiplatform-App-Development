@@ -1,0 +1,88 @@
+<!-- ============================================================
+     AndroidManifest.xml
+     Flutter Unit Converter App — Android Application Manifest
+     Course: MSCS-631 | University of the Cumberlands
+     Author: Arun
+
+     This manifest declares the Android application package,
+     permissions, and the main activity entry point used by
+     the Flutter engine.
+     See: https://developer.android.com/guide/topics/manifest/
+     ============================================================ -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ── Permissions ─────────────────────────────────────
+         INTERNET: Required for Flutter DevTools and hot-reload
+         during development. Remove for production-only builds
+         if no network access is needed.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- ── Application Declaration ─────────────────────────
+         android:label       : App name shown on the launcher
+         android:icon        : Launcher icon (mipmap resource)
+         android:theme       : Base theme; Flutter overrides
+                               this with its own rendering
+         android:enableOnBackInvokedCallback : Supports Android 13+
+                               predictive back gesture
+    -->
+    <application
+        android:label="Unit Converter"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true">
+
+        <!-- ── Main Activity ─────────────────────────────────
+             The FlutterActivity is the single activity that
+             hosts the Flutter rendering surface. All app
+             navigation is handled inside Flutter, not Android
+             Activities, so only one Activity is declared.
+
+             android:exported="true" is required for apps
+             targeting API 31+ (Android 12+) when the activity
+             has an intent-filter.
+
+             android:windowSoftInputMode="adjustResize" ensures
+             the keyboard does not cover the input field.
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <!-- Specifies this is the app launcher entry point -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!-- Flutter 3.x Deep Link support (optional) -->
+            <meta-data
+                android:name="flutter_deeplinking_enabled"
+                android:value="true"/>
+        </activity>
+
+        <!-- Required for Flutter plugin compatibility -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"/>
+
+    </application>
+
+    <!-- ── Queries block ─────────────────────────────────────
+         Required for Android 11+ (API 30+) package visibility.
+         Declares intent queries the app may use.
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+
+</manifest>
