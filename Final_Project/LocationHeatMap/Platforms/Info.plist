@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+    Platforms/iOS/Info.plist
+    iOS application configuration for Location Heat Map.
+
+    IMPORTANT – Before submitting to the App Store:
+      1. Replace YOUR_GOOGLE_MAPS_API_KEY_HERE with a key from:
+         https://console.cloud.google.com → APIs & Services → Credentials
+         (Enable "Maps SDK for iOS")
+      2. Update NSLocationWhenInUseUsageDescription with accurate copy.
+      3. Set CFBundleIdentifier to your unique reverse-DNS identifier.
+-->
+<plist version="1.0">
+<dict>
+
+    <!-- ── App Identity ── -->
+    <key>CFBundleName</key>
+    <string>Location Heat Map</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>com.yourdomain.locationheatmap</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>HeatMap</string>
+
+    <!-- ── Minimum iOS version ── -->
+    <key>MinimumOSVersion</key>
+    <string>15.0</string>
+
+    <!-- ── Location usage descriptions (required by App Store review) ── -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Location Heat Map uses your location to record GPS points and display
+    them as a personalised heat map of places you visit.</string>
+
+    <!-- ── Google Maps SDK initialisation ── -->
+    <key>GMSApiKey</key>
+    <string>AIzaSyA8wQegLLNlaS0mf72QIAxDg7esK_sRWio</string>
+
+    <!-- ── Required background modes (remove if background tracking is not needed) ── -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
+
+    <!-- ── Supported interface orientations (iPhone) ── -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- ── Supported interface orientations (iPad) ── -->
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- ── Launch screen ── -->
+    <key>UILaunchStoryboardName</key>
+    <string>MauiSplash</string>
+
+    <!-- ── Required for MAUI on iOS ── -->
+    <key>XSAppIconAssets</key>
+    <string>Assets.xcassets/appicon.appiconset</string>
+
+</dict>
+</plist>

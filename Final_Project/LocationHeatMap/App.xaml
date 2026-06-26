@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    App.xaml
+    Application-level resources: colour palette, global styles.
+    All keys here are available throughout the app via StaticResource.
+-->
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocationHeatMap.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- ──── Colour Palette ──── -->
+            <Color x:Key="PrimaryColor">#1A73E8</Color>
+            <Color x:Key="PrimaryDarkColor">#1558B0</Color>
+            <Color x:Key="AccentColor">#E84040</Color>
+            <Color x:Key="SurfaceColor">#F5F5F5</Color>
+            <Color x:Key="PageBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="PrimaryTextColor">#212121</Color>
+            <Color x:Key="SecondaryTextColor">#757575</Color>
+
+            <!-- ──── Global Button Style ──── -->
+            <Style TargetType="Button">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius"   Value="8"/>
+                <Setter Property="HeightRequest"  Value="44"/>
+            </Style>
+
+            <!-- ──── Global Label Style ──── -->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

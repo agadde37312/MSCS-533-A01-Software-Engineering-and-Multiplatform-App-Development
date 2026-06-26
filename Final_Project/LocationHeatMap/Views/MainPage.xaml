@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Views/MainPage.xaml
+    Main screen of the Location Heat Map application.
+
+    Layout:
+      ┌─────────────────────────────────────────┐
+      │  Title bar + status message             │
+      ├─────────────────────────────────────────┤
+      │  Map (fills most of the screen)         │
+      │  ↳ HeatMapOverlay floats on top         │
+      ├─────────────────────────────────────────┤
+      │  Stats strip  (coords, sample count)    │
+      ├─────────────────────────────────────────┤
+      │  Button row  (Start | Stop | Refresh |  │
+      │               Clear)                    │
+      └─────────────────────────────────────────┘
+-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:controls="clr-namespace:LocationHeatMap.Controls"
+             xmlns:vm="clr-namespace:LocationHeatMap.ViewModels"
+             x:Class="LocationHeatMap.Views.MainPage"
+             Title="Location Heat Map"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <!-- ================================================================
+         Root layout – three rows: header / map area / controls
+         ================================================================ -->
+    <Grid RowDefinitions="Auto,*,Auto,Auto">
+
+        <!-- ──────────────────── HEADER ──────────────────── -->
+        <VerticalStackLayout Grid.Row="0"
+                             BackgroundColor="{StaticResource PrimaryColor}"
+                             Padding="16,12">
+            <Label Text="📍 Location Heat Map"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+            <Label Text="{Binding StatusMessage}"
+                   FontSize="13"
+                   TextColor="#DDEEFF"
+                   HorizontalOptions="Center"
+                   Margin="0,4,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- ──────────────────── MAP + OVERLAY ──────────────────── -->
+        <!--
+            A Grid with one cell stacks the Map and the transparent
+            HeatMapOverlay on top of each other, aligned to the same space.
+        -->
+        <Grid Grid.Row="1">
+            <!-- Native map tile layer -->
+            <maps:Map x:Name="MainMap"
+                      IsShowingUser="True"
+                      MapType="Street"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill"/>
+
+            <!-- Heat map drawing layer (input-transparent – touches pass through) -->
+            <controls:HeatMapOverlay x:Name="HeatOverlay"
+                                     HeatMapPoints="{Binding HeatMapPoints}"
+                                     HorizontalOptions="Fill"
+                                     VerticalOptions="Fill"/>
+        </Grid>
+
+        <!-- ──────────────────── STATS STRIP ──────────────────── -->
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,*"
+              BackgroundColor="{StaticResource SurfaceColor}"
+              Padding="16,8">
+
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Start">
+                <Label Text="CURRENT POSITION"
+                       FontSize="10"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource SecondaryTextColor}"/>
+                <Label Text="{Binding CurrentCoords}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource PrimaryTextColor}"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="End">
+                <Label Text="SAMPLES RECORDED"
+                       FontSize="10"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource SecondaryTextColor}"/>
+                <Label Text="{Binding EntryCount}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource PrimaryTextColor}"
+                       HorizontalOptions="End"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- ──────────────────── BUTTON ROW ──────────────────── -->
+        <Grid Grid.Row="3"
+              ColumnDefinitions="*,*,*,*"
+              BackgroundColor="{StaticResource SurfaceColor}"
+              Padding="12,8,12,16"
+              ColumnSpacing="8">
+
+            <!-- Start tracking -->
+            <Button Grid.Column="0"
+                    Text="▶ Start"
+                    Command="{Binding StartTrackingCommand}"
+                    BackgroundColor="#27AE60"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="13"/>
+
+            <!-- Stop tracking -->
+            <Button Grid.Column="1"
+                    Text="■ Stop"
+                    Command="{Binding StopTrackingCommand}"
+                    BackgroundColor="#E74C3C"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="13"/>
+
+            <!-- Refresh heat map from database -->
+            <Button Grid.Column="2"
+                    Text="↻ Map"
+                    Command="{Binding RefreshMapCommand}"
+                    BackgroundColor="#2980B9"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="13"/>
+
+            <!-- Clear all stored data -->
+            <Button Grid.Column="3"
+                    Text="🗑 Clear"
+                    Command="{Binding ClearDataCommand}"
+                    BackgroundColor="#95A5A6"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="13"/>
+        </Grid>
+    </Grid>
+</ContentPage>

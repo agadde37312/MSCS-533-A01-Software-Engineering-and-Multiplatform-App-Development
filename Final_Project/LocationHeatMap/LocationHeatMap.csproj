@@ -1,0 +1,79 @@
+<!--
+    LocationHeatMap.csproj
+    Multi-platform MAUI project targeting Android, iOS, macOS, and Windows.
+    Targets net9.0 with SDK 10 (net9.0 is the latest supported MAUI TFM).
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- net9.0 is the correct TFM for MAUI with .NET SDK 10.0.300 -->
+    <TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst;net9.0-windows10.0.19041.0</TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <RootNamespace>LocationHeatMap</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Suppress the EOL warning – net9.0 MAUI workload ships with SDK 10 -->
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <NoWarn>$(NoWarn);NETSDK1202</NoWarn>
+
+    <!-- Required explicit reference since UseMaui no longer auto-includes it -->
+    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
+
+    <!-- App identity -->
+    <ApplicationTitle>Location Heat Map</ApplicationTitle>
+    <ApplicationId>com.yourdomain.locationheatmap</ApplicationId>
+
+    <!-- Versioning -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <!-- Platform minimum OS versions -->
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+
+  <!-- ================================================================
+       NuGet package references – all pinned to 9.0.120 (ships with SDK 10)
+       ================================================================ -->
+  <ItemGroup>
+    <!-- Core MAUI controls (must be explicit with SDK 10) -->
+    <PackageReference Include="Microsoft.Maui.Controls"      Version="9.0.120" />
+    <!-- MAUI Maps tile map component -->
+    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="9.0.60" />
+    <!-- Community Toolkit helpers -->
+    <PackageReference Include="CommunityToolkit.Maui"        Version="9.1.0"   />
+    <!-- Logging -->
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0"   />
+    <!-- SQLite ORM -->
+    <PackageReference Include="sqlite-net-pcl"               Version="1.9.172" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green"    Version="2.1.8"   />
+  </ItemGroup>
+
+  <!-- ================================================================
+       App resources
+       ================================================================ -->
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg"
+              ForegroundFile="Resources\AppIcon\appiconfg.svg"
+              Color="#1A73E8" />
+
+    <MauiSplashScreen Include="Resources\Splash\splash.svg"
+                      Color="#1A73E8"
+                      BaseSize="128,128" />
+
+    <MauiFont Include="Resources\Fonts\*" />
+
+    <MauiAsset Include="Resources\Raw\**"
+               LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+
+    <MauiImage Include="Resources\Images\*" />
+  </ItemGroup>
+
+</Project>

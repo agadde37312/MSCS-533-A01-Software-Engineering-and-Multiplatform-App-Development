@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Platforms/Android/AndroidManifest.xml
+    Android application manifest for the Location Heat Map app.
+
+    Key permissions:
+      • ACCESS_FINE_LOCATION   – precise GPS (required for heat map accuracy)
+      • ACCESS_COARSE_LOCATION – coarse cell/Wi-Fi location (fallback)
+      • INTERNET                – required by the Google Maps SDK tile fetcher
+
+    Google Maps API key:
+      Replace YOUR_GOOGLE_MAPS_API_KEY_HERE with a key obtained from:
+      https://console.cloud.google.com → APIs & Services → Credentials
+      Enable "Maps SDK for Android" for that key.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.yourdomain.locationheatmap">
+
+    <application android:label="Location Heat Map"
+                 android:icon="@mipmap/appicon"
+                 android:roundIcon="@mipmap/appicon_round"
+                 android:supportsRtl="true"
+                 android:allowBackup="true">
+
+        <!-- Google Maps API key (required for map tile rendering) -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyA8wQegLLNlaS0mf72QIAxDg7esK_sRWio" />
+
+    </application>
+
+    <!-- Location permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Network access for map tiles -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Hardware feature declarations (not hard requirements) -->
+    <uses-feature android:name="android.hardware.location"     android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+</manifest>
