@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LocationHeatMap")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+dc0e9b0492414b57552cb1f88a100d8fb5f8dd04")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+0f5739c2cca9625d87e16564b3543df21c403161")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocationHeatMap")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocationHeatMap")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
